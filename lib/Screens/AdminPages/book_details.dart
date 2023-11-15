@@ -1,10 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
-import 'dart:developer';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mylibrary/Functions/filepicker.dart';
 import 'package:mylibrary/Functions/imagePicker.dart';
+import 'package:mylibrary/Screens/AdminPages/datastoredpage.dart';
 import 'package:mylibrary/Screens/Models/bookdataModel.dart';
 import 'package:mylibrary/Screens/Models/category.dart';
 import 'package:mylibrary/Screens/service/hivedatabase.dart';
@@ -29,6 +31,7 @@ late TextEditingController bookDetailsController;
 late TextEditingController authorDetailsController;
 String dropdownValue = 'dd';
 String? audiofilePath;
+String? bookAudioForUpdate;
 
 class _ScreenBookDetailsState extends State<ScreenBookDetails> {
   final dividers = const SizedBox(
@@ -52,6 +55,7 @@ class _ScreenBookDetailsState extends State<ScreenBookDetails> {
     dropdownValue = widget.bookModel.categories;
     coverImage = File(widget.bookModel.imageUrl);
     selectImage = File(widget.bookModel.authorimageUrl);
+    bookAudioForUpdate = widget.bookModel.audioUrl;
   }
 
   @override
@@ -122,20 +126,29 @@ class _ScreenBookDetailsState extends State<ScreenBookDetails> {
             dividers,
             Padding(
               padding: const EdgeInsets.only(left: 20),
-              child: CircleAvatar(
-                radius: 25,
-                child: IconButton(
-                    onPressed: () async {
-                      if (isPlaying) {
-                        await audioPlayer.pause();
-                      } else {
-                        await audioPlayer
-                            .play(DeviceFileSource(widget.bookModel.audioUrl));
-                      }
-                    },
-                    icon: Icon(
-                      isPlaying ? Icons.pause : Icons.play_arrow,
-                    )),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 25,
+                    child: IconButton(
+                        onPressed: () async {
+                          if (isPlaying) {
+                            await audioPlayer.pause();
+                          } else {
+                            await audioPlayer
+                                .play(DeviceFileSource(bookAudioForUpdate!));
+                          }
+                        },
+                        icon: Icon(
+                          isPlaying ? Icons.pause : Icons.play_arrow,
+                        )),
+                  ),
+                  ElevatedButton(
+                      onPressed: () async {
+                        bookAudioForUpdate = await pickAndPlayAudio(context);
+                      },
+                      child: const Text("Edit Audio"))
+                ],
               ),
             ),
             dividers,
@@ -165,8 +178,13 @@ class _ScreenBookDetailsState extends State<ScreenBookDetails> {
                       backgroundColor: MaterialStatePropertyAll(
                     Colors.black,
                   )),
-                  onPressed: () {
-                    updatedbook();
+                  onPressed: () async {
+                    await updatedbook();
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DataStoredScreen(),
+                        ));
                   },
                   child: const Text("Update Details")),
             )
@@ -176,11 +194,11 @@ class _ScreenBookDetailsState extends State<ScreenBookDetails> {
     );
   }
 
-  void updatedbook() async {
+  Future<void> updatedbook() async {
     final updatedbook = BookModel(
         bookName: bookNameController.text,
         author: authorController.text,
-        audioUrl: widget.bookModel.audioUrl,
+        audioUrl: bookAudioForUpdate!,
         imageUrl: coverImage!.path,
         bookDetails: bookDetailsController.text,
         authorDetails: authorDetailsController.text,

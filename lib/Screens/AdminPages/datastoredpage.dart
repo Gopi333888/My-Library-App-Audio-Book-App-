@@ -31,9 +31,6 @@ class _DataStoredScreenState extends State<DataStoredScreen> {
 
   @override
   Widget build(BuildContext context) {
-    setState(() {
-      fetchBookData();
-    });
     log('rebuilding');
     return Scaffold(
       backgroundColor: Colors.black,
@@ -118,14 +115,14 @@ class _DataStoredScreenState extends State<DataStoredScreen> {
                                                             MaterialStatePropertyAll(
                                                                 Colors.green)),
                                                     onPressed: () {
-                                                      setState(() {
-                                                        deleteBooksAFromHive(
-                                                            index);
-                                                        print('UI updated');
+                                                      bookDatas.removeAt(index);
+                                                      setState(() {});
+                                                      deleteBooksAFromHive(
+                                                          index);
+                                                      print('UI updated');
 
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                      });
+                                                      Navigator.of(context)
+                                                          .pop();
                                                     },
                                                     child: const Text("Ok"))
                                               ],
