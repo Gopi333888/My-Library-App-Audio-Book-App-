@@ -1,4 +1,7 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:mylibrary/Screens/InnerScreens/aboutBook.dart';
@@ -14,6 +17,9 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+final CollectionReference userReference =
+    FirebaseFirestore.instance.collection('users');
+String name = "";
 List<BookModel> bookDatas = [];
 
 const dividers = SizedBox(
@@ -50,46 +56,82 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       drawer: SafeArea(
         child: Drawer(
-          child: ListTile(
-            leading: InkWell(
-              //inkwell or guestordirector can be used
-              onTap: () {
-                authservice.signOut();
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: const Text("LogOut"),
-                      content: const Text("Log Out of your account"),
-                      actions: [
-                        Padding(
-                          padding: const EdgeInsets.all(18.0),
-                          child: ElevatedButton(
-                              onPressed: () {
-                                authservice.signOut();
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                      builder: (context) => const UserLogin(),
-                                    ),
-                                    (route) => false);
-                              },
-                              child: const Text("Log out")),
-                        ),
-                        ElevatedButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: const Text("Cancel"))
-                      ],
+          child: Column(
+            children: [
+              ListTile(
+                leading: InkWell(
+                  //inkwell or guestordirector can be used
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text("LogOut"),
+                          content: const Text("Log Out of your account"),
+                          actions: [
+                            Padding(
+                              padding: const EdgeInsets.all(18.0),
+                              child: ElevatedButton(
+                                  onPressed: () {
+                                    authservice.signOut();
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const UserLogin(),
+                                        ),
+                                        (route) => false);
+                                  },
+                                  child: const Text("Log out")),
+                            ),
+                            ElevatedButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text("Cancel"))
+                          ],
+                        );
+                      },
                     );
                   },
-                );
-              },
-              child: const Text(
-                "LogOut",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  child: const Text(
+                    "LogOut",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                ),
               ),
-            ),
+              StreamBuilder(
+                stream: userReference
+                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData && snapshot.data!.exists) {
+                    Map<String, dynamic>? data =
+                        snapshot.data!.data() as Map<String, dynamic>?;
+
+                    if (data != null && data.containsKey('fullName')) {
+                      name = data['fullName'] as String;
+                    }
+
+                    return UserAccountsDrawerHeader(
+                      decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 116, 196, 220),
+                      ),
+                      accountName: DateTime.now().hour < 12
+                          ? Text('Good Morning $name')
+                          : DateTime.now().hour >= 12 &&
+                                  DateTime.now().hour < 16
+                              ? Text('Good Afternoon $name')
+                              : Text('Good Evening $name'),
+                      accountEmail:
+                          Text(FirebaseAuth.instance.currentUser!.email!),
+                    );
+                  }
+
+                  // Handle other cases or return a placeholder widget
+                  return const Text('Loading...');
+                },
+              )
+            ],
           ),
         ),
       ),
@@ -118,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           const SliverGridDelegateWithFixedCrossAxisCount(
                               childAspectRatio: 1 / 1.5,
                               crossAxisCount: 3,
-                              mainAxisSpacing: 10,
+                              mainAxisSpacing: 18,
                               crossAxisSpacing: 10),
                       itemCount: bookDatas.length,
                       itemBuilder: (context, index) {
@@ -130,7 +172,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => AboutBookScreen(
-                                        bookmodel: bookDatas[index])));
+                                          bookModel: bookDatas[index],
+                                        )));
                           },
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(16.0),

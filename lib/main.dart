@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mylibrary/Screens/AdminPages/Admin.dart';
 import 'package:mylibrary/Screens/Models/bookdataModel.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:mylibrary/Screens/login.dart/splashScreen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: AdminScreen(),
+      home: SplashScreen(),
       // home: SplashScreen(),
       debugShowCheckedModeBanner: false,
     );

@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'dart:io';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
@@ -124,33 +122,6 @@ class _ScreenBookDetailsState extends State<ScreenBookDetails> {
               labeltext: "Author Details",
             ),
             dividers,
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    radius: 25,
-                    child: IconButton(
-                        onPressed: () async {
-                          if (isPlaying) {
-                            await audioPlayer.pause();
-                          } else {
-                            await audioPlayer
-                                .play(DeviceFileSource(bookAudioForUpdate!));
-                          }
-                        },
-                        icon: Icon(
-                          isPlaying ? Icons.pause : Icons.play_arrow,
-                        )),
-                  ),
-                  ElevatedButton(
-                      onPressed: () async {
-                        bookAudioForUpdate = await pickAndPlayAudio(context);
-                      },
-                      child: const Text("Edit Audio"))
-                ],
-              ),
-            ),
             dividers,
             InkWell(
               onTap: () async {
@@ -163,9 +134,48 @@ class _ScreenBookDetailsState extends State<ScreenBookDetails> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 20),
-                    child: CircleAvatar(
-                      backgroundImage: FileImage(selectImage!),
-                      radius: 70,
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: FileImage(selectImage!),
+                          radius: 70,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 90),
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.green,
+                                radius: 25,
+                                child: IconButton(
+                                    color: Colors.white,
+                                    onPressed: () async {
+                                      if (isPlaying) {
+                                        await audioPlayer.pause();
+                                      } else {
+                                        await audioPlayer.play(DeviceFileSource(
+                                            bookAudioForUpdate!));
+                                      }
+                                    },
+                                    icon: Icon(
+                                      isPlaying
+                                          ? Icons.pause
+                                          : Icons.play_arrow,
+                                    )),
+                              ),
+                              ElevatedButton(
+                                  style: const ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll(
+                                          Colors.black)),
+                                  onPressed: () async {
+                                    bookAudioForUpdate =
+                                        await pickAndPlayAudio(context);
+                                  },
+                                  child: const Text("Edit Audio")),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -180,6 +190,7 @@ class _ScreenBookDetailsState extends State<ScreenBookDetails> {
                   )),
                   onPressed: () async {
                     await updatedbook();
+                    // ignore: use_build_context_synchronously
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
@@ -187,7 +198,7 @@ class _ScreenBookDetailsState extends State<ScreenBookDetails> {
                         ));
                   },
                   child: const Text("Update Details")),
-            )
+            ),
           ],
         ),
       ),
