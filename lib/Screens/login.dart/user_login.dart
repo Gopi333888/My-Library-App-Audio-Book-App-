@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mylibrary/Screens/AdminPages/datastoredpage.dart';
-import 'package:mylibrary/Screens/NavigatorBar/NavigatorBar.dart';
+import 'package:mylibrary/Screens/NavigatorBar/navigator_bar.dart';
 import 'package:mylibrary/Screens/helper/helper/sharepreference.dart';
-import 'package:mylibrary/Screens/login.dart/signupScreen.dart';
+import 'package:mylibrary/Screens/login.dart/signup_screen.dart';
 import 'package:mylibrary/Screens/service/auth_service.dart';
 import 'package:mylibrary/Screens/service/database_service.dart';
 

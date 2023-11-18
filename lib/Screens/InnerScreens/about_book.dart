@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mylibrary/Screens/InnerScreens/audio_player_screen.dart';
-import 'package:mylibrary/Screens/Models/bookdataModel.dart';
+import 'package:mylibrary/Screens/Models/bookdata_model.dart';
 
 class AboutBookScreen extends StatefulWidget {
   const AboutBookScreen({super.key, required this.bookModel});
@@ -64,7 +64,7 @@ class _AboutBookScreenState extends State<AboutBookScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             //mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Container(
+                              SizedBox(
                                 width: screenwidth * 0.46,
                                 child: Text(
                                   widget.bookModel.bookName,
@@ -138,7 +138,7 @@ class _AboutBookScreenState extends State<AboutBookScreen> {
                       child: Text(
                         widget.bookModel.bookDetails,
                         style: GoogleFonts.poppins(
-                            fontSize: 16,
+                            fontSize: 15,
                             fontWeight: FontWeight.w400,
                             color: Colors.white),
                       ),
@@ -165,6 +165,7 @@ class _AboutBookScreenState extends State<AboutBookScreen> {
                     child: Row(
                       children: [
                         CircleAvatar(
+                          backgroundColor: Colors.black,
                           backgroundImage: FileImage(authorImage!),
                           radius: 60,
                         ),
@@ -198,7 +199,7 @@ class _AboutBookScreenState extends State<AboutBookScreen> {
                       child: Text(
                         widget.bookModel.authorDetails,
                         style: GoogleFonts.poppins(
-                            fontSize: 16,
+                            fontSize: 15,
                             fontWeight: FontWeight.w400,
                             color: Colors.white),
                       ),

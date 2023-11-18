@@ -5,11 +5,11 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mylibrary/Functions/filepicker.dart';
 import 'package:mylibrary/Functions/imagePicker.dart';
 import 'package:mylibrary/Screens/AdminPages/datastoredpage.dart';
-import 'package:mylibrary/Screens/Models/bookdataModel.dart';
+import 'package:mylibrary/Screens/Models/bookdata_model.dart';
 import 'package:mylibrary/Screens/Models/category.dart';
 import 'package:mylibrary/Screens/service/hivedatabase.dart';
-import 'package:mylibrary/widgets/booksTextfeild.dart';
-import 'package:mylibrary/widgets/dropDown.dart';
+import 'package:mylibrary/widgets/books_textfeild.dart';
+import 'package:mylibrary/widgets/drop_down.dart';
 
 class ScreenBookDetails extends StatefulWidget {
   const ScreenBookDetails({super.key, required this.bookModel});

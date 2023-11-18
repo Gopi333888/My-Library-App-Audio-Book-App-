@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:mylibrary/Screens/Models/bookdataModel.dart';
+import 'package:mylibrary/Screens/Models/bookdata_model.dart';
 
 Future<void> addBooks(BookModel value) async {
   final bookDB =

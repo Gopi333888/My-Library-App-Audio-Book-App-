@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mylibrary/Screens/Models/bookdataModel.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:mylibrary/Screens/login.dart/splashScreen.dart';
+import 'package:mylibrary/Screens/Models/bookdata_model.dart';
+import 'package:mylibrary/Screens/login.dart/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

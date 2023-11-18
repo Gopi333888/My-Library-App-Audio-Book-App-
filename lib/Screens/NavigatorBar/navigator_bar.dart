@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:mylibrary/Screens/Screens/App/HomeScreen.dart';
 import 'package:mylibrary/Screens/Screens/App/Search.dart';
 import 'package:mylibrary/Screens/Screens/App/category.dart';
 import 'package:mylibrary/Screens/Screens/App/favorite.dart';
+import 'package:mylibrary/Screens/Screens/App/home_screen.dart';
 
 class NavigatorScreen extends StatefulWidget {
   const NavigatorScreen({super.key});
@@ -17,7 +17,7 @@ class _NavigatorBarState extends State<NavigatorScreen> {
   int index = 0;
 
   final screens = [
-    HomeScreen(),
+    const HomeScreen(),
     const Categories(),
     const Favorite(),
     const Search(),

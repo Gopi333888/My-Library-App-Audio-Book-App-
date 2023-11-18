@@ -1,5 +1,5 @@
 import 'package:hive_flutter/adapters.dart';
-part 'bookdataModel.g.dart';
+part 'bookdata_model.g.dart';
 
 @HiveType(typeId: 1)
 class BookModel {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mylibrary/Screens/NavigatorBar/NavigatorBar.dart';
+import 'package:mylibrary/Screens/NavigatorBar/navigator_bar.dart';
 import 'package:mylibrary/Screens/helper/helper/sharepreference.dart';
-import 'package:mylibrary/Screens/login.dart/UserLogin.dart';
+import 'package:mylibrary/Screens/login.dart/user_login.dart';
 import 'package:mylibrary/Screens/service/auth_service.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -60,7 +60,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         IconButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const UserLogin(),
+                              builder: (context) =>  const UserLogin(),
                             ));
                           },
                           icon: const Icon(Icons.arrow_back_ios_new_sharp),
@@ -359,7 +359,7 @@ class _SignupScreenState extends State<SignupScreen> {
           // ignore: use_build_context_synchronously
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
-                builder: (context) => NavigatorScreen(),
+                builder: (context) => const NavigatorScreen(),
               ),
               (route) => false);
         } else {
