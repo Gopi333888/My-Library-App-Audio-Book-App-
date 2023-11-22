@@ -7,7 +7,7 @@ import 'package:mylibrary/Functions/imagePicker.dart';
 import 'package:mylibrary/Screens/AdminPages/datastoredpage.dart';
 import 'package:mylibrary/Screens/Models/bookdata_model.dart';
 import 'package:mylibrary/Screens/Models/category.dart';
-import 'package:mylibrary/Screens/service/hivedatabase.dart';
+import 'package:mylibrary/database/service/hivedatabase.dart';
 import 'package:mylibrary/widgets/books_textfeild.dart';
 import 'package:mylibrary/widgets/drop_down.dart';
 
@@ -54,6 +54,13 @@ class _ScreenBookDetailsState extends State<ScreenBookDetails> {
     coverImage = File(widget.bookModel.imageUrl);
     selectImage = File(widget.bookModel.authorimageUrl);
     bookAudioForUpdate = widget.bookModel.audioUrl;
+  }
+
+  @override
+  void dispose() {
+    audioplayer.pause(); // Pause the audio player when the screen is disposed
+    audioplayer.release(); // Release resources associated with the audio player
+    super.dispose();
   }
 
   @override

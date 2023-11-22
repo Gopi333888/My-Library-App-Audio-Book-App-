@@ -5,8 +5,8 @@ import 'package:mylibrary/Screens/AdminPages/datastoredpage.dart';
 import 'package:mylibrary/Screens/NavigatorBar/navigator_bar.dart';
 import 'package:mylibrary/Screens/helper/helper/sharepreference.dart';
 import 'package:mylibrary/Screens/login.dart/signup_screen.dart';
-import 'package:mylibrary/Screens/service/auth_service.dart';
-import 'package:mylibrary/Screens/service/database_service.dart';
+import 'package:mylibrary/database/service/auth_service.dart';
+import 'package:mylibrary/database/service/database_service.dart';
 
 class UserLogin extends StatefulWidget {
   const UserLogin({super.key});

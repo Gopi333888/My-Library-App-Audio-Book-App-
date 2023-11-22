@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:mylibrary/Screens/InnerScreens/about_book.dart';
 import 'package:mylibrary/Screens/Models/bookdata_model.dart';
-import 'package:mylibrary/Screens/service/hivedatabase.dart';
+import 'package:mylibrary/database/service/hivedatabase.dart';
 
 class Search extends StatefulWidget {
   const Search({Key? key}) : super(key: key);
@@ -86,11 +86,10 @@ class _SearchState extends State<Search> {
                     child: GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: 1 / 1.5,
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                      ),
+                              childAspectRatio: 1 / 1.5,
+                              crossAxisCount: 3,
+                              mainAxisSpacing: 15,
+                              crossAxisSpacing: 10),
                       itemCount: bookDatas.length,
                       itemBuilder: (context, index) {
                         return InkWell(
@@ -99,8 +98,8 @@ class _SearchState extends State<Search> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => AboutBookScreen(
-                                        bookModel: bookDatas[index],
-                                      )),
+                                      bookModel: bookDatas[index],
+                                     )),
                             );
                           },
                           child: Stack(

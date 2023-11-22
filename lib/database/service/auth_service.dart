@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mylibrary/Screens/helper/helper/sharepreference.dart';
-import 'package:mylibrary/Screens/service/database_service.dart';
+import 'package:mylibrary/database/service/database_service.dart';
 
 enum UserCredentialConstant { user, admin, error }
 

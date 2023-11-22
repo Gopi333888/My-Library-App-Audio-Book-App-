@@ -27,3 +27,11 @@ Future<bool> deleteBooksAFromHive(int index) async {
     return false;
   }
 }
+
+Future<List<BookModel>> fetchBooksByCategory({required String category}) async {
+  final box = await Hive.openBox<BookModel>('books_db');
+  return box.values
+      .toList()
+      .where((book) => book.categories.toLowerCase() == category.toLowerCase())
+      .toList();
+}

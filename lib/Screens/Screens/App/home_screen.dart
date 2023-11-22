@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:mylibrary/Screens/InnerScreens/about_book.dart';
 import 'package:mylibrary/Screens/Models/bookdata_model.dart';
 import 'package:mylibrary/Screens/login.dart/user_login.dart';
-import 'package:mylibrary/Screens/service/auth_service.dart';
-import 'package:mylibrary/Screens/service/hivedatabase.dart';
+import 'package:mylibrary/database/service/auth_service.dart';
+import 'package:mylibrary/database/service/hivedatabase.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -57,14 +57,13 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Drawer(
           child: Container(
             decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.green, Colors.white],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                boxShadow: [
-                  BoxShadow(color: Colors.black),
-                ]),
+              gradient: LinearGradient(
+                colors: [Colors.green, Colors.white],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              boxShadow: [BoxShadow(color: Colors.black)],
+            ),
             child: Column(
               children: [
                 StreamBuilder(
@@ -128,6 +127,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               Padding(
                                 padding: const EdgeInsets.all(18.0),
                                 child: ElevatedButton(
+                                    style: const ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStatePropertyAll(
+                                                Colors.green)),
                                     onPressed: () {
                                       authservice.signOut();
                                       Navigator.of(context).pushAndRemoveUntil(
@@ -140,6 +143,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: const Text("Log out")),
                               ),
                               ElevatedButton(
+                                  style: const ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll(
+                                          Colors.green)),
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },

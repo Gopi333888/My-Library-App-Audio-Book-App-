@@ -6,9 +6,11 @@ import 'package:mylibrary/Screens/InnerScreens/audio_player_screen.dart';
 import 'package:mylibrary/Screens/Models/bookdata_model.dart';
 
 class AboutBookScreen extends StatefulWidget {
-  const AboutBookScreen({super.key, required this.bookModel});
+  const AboutBookScreen({
+    super.key,
+    required this.bookModel,
+  });
   final BookModel bookModel;
-
   @override
   State<AboutBookScreen> createState() => _AboutBookScreenState();
 }
