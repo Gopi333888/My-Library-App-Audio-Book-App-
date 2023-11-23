@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:mylibrary/Functions/filepicker.dart';
 import 'package:mylibrary/Functions/imagePicker.dart';
-import 'package:mylibrary/Screens/AdminPages/book_details.dart';
 import 'package:mylibrary/Screens/AdminPages/datastoredpage.dart';
 import 'package:mylibrary/Screens/Models/bookdata_model.dart';
 import 'package:mylibrary/Screens/Models/category.dart';

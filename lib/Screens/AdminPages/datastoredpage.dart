@@ -119,8 +119,6 @@ class _DataStoredScreenState extends State<DataStoredScreen> {
                                                       setState(() {});
                                                       deleteBooksAFromHive(
                                                           index);
-                                                      print('UI updated');
-
                                                       Navigator.of(context)
                                                           .pop();
                                                     },

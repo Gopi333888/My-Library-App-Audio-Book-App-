@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mylibrary/Screens/InnerScreens/audio_player_screen.dart';
 import 'package:mylibrary/Screens/Models/bookdata_model.dart';
+import 'package:mylibrary/database/service/hivedatabase.dart';
 
 class AboutBookScreen extends StatefulWidget {
   const AboutBookScreen({
@@ -112,15 +113,40 @@ class _AboutBookScreenState extends State<AboutBookScreen> {
                   )
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20, right: 270),
-                child: Text(
-                  "About",
-                  style: GoogleFonts.poppins(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.white),
-                ),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20, left: 20),
+                    child: Text(
+                      "About",
+                      style: GoogleFonts.poppins(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20, left: 240),
+                    child: ValueListenableBuilder(
+                      valueListenable: favoriteNotifier,
+                      builder: (context, bookList, child) => IconButton(
+                          onPressed: () {
+                            addAndremoveFavorite(widget.bookModel);
+                          },
+                          icon: bookList.contains(widget.bookModel)
+                              ? const Icon(
+                                  Icons.favorite,
+                                  size: 26,
+                                  color: Colors.red,
+                                )
+                              : const Icon(
+                                  Icons.favorite_border_outlined,
+                                  color: Colors.white,
+                                  size: 26,
+                                )),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: screenheight * 0.01,

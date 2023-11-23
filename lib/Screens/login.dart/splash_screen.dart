@@ -2,7 +2,9 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mylibrary/Screens/NavigatorBar/navigator_bar.dart';
+import 'package:mylibrary/Screens/helper/helper/sharepreference.dart';
 import 'package:mylibrary/Screens/login.dart/user_login.dart';
+import 'package:mylibrary/database/service/hivedatabase.dart';
 
 class SplashScreen extends StatefulWidget {
   // ignore: use_key_in_widget_constructors
@@ -17,7 +19,12 @@ String? username;
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    setcurrentuser();
     super.initState();
+  }
+
+  Future<void> setcurrentuser() async {
+    currentuser = await SharedPreferenceClass.getcurrentuserID() ?? '';
   }
 
   @override

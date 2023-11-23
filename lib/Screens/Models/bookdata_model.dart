@@ -21,6 +21,9 @@ class BookModel {
   int? id;
   @HiveField(8)
   final String categories;
+  @HiveField(9)
+  List<String>? favoriteUserIds;
+
   BookModel(
       {required this.bookName,
       required this.author,
@@ -30,5 +33,6 @@ class BookModel {
       required this.authorDetails,
       required this.authorimageUrl,
       this.id,
+      this.favoriteUserIds,
       required this.categories});
 }

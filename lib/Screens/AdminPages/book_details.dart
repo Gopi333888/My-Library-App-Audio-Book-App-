@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mylibrary/Functions/filepicker.dart';
 import 'package:mylibrary/Functions/imagePicker.dart';
 import 'package:mylibrary/Screens/AdminPages/datastoredpage.dart';
@@ -221,14 +220,8 @@ class _ScreenBookDetailsState extends State<ScreenBookDetails> {
         bookDetails: bookDetailsController.text,
         authorDetails: authorDetailsController.text,
         authorimageUrl: selectImage!.path,
+        favoriteUserIds: widget.bookModel.favoriteUserIds,
         categories: dropdownValue);
-    int key = getKeyOfBookModel(widget.bookModel);
-    await updateBookInHive(updatedbook, key);
-  }
-
-  int getKeyOfBookModel(BookModel book) {
-    var box = Hive.box<BookModel>('books_db');
-    var key = box.keyAt(box.values.toList().indexOf(book));
-    return key;
+    await updateBookInHive(updatedbook, widget.bookModel);
   }
 }

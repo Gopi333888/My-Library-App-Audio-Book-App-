@@ -7,6 +7,7 @@ import 'package:mylibrary/Screens/helper/helper/sharepreference.dart';
 import 'package:mylibrary/Screens/login.dart/signup_screen.dart';
 import 'package:mylibrary/database/service/auth_service.dart';
 import 'package:mylibrary/database/service/database_service.dart';
+import 'package:mylibrary/database/service/hivedatabase.dart';
 
 class UserLogin extends StatefulWidget {
   const UserLogin({super.key});
@@ -237,6 +238,9 @@ class _UserLoginState extends State<UserLogin> {
               snapshot.docs[0]['fullName']);
           await SharedPreferenceClass.savepassword(password);
           await SharedPreferenceClass.savephonenumber(email);
+          await SharedPreferenceClass.savecurrentuserID(
+              FirebaseAuth.instance.currentUser!.uid);
+          currentuser = FirebaseAuth.instance.currentUser!.uid;
           // ignore: use_build_context_synchronously
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
