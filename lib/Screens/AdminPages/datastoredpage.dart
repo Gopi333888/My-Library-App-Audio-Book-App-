@@ -83,7 +83,7 @@ class _DataStoredScreenState extends State<DataStoredScreen> {
                               ),
                               Positioned(
                                 bottom: 5,
-                                right: 0,
+                                right: 3,
                                 child: CircleAvatar(
                                     radius: 20,
                                     backgroundColor: Colors.green,

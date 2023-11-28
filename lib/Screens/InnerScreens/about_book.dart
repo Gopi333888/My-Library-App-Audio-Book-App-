@@ -131,7 +131,7 @@ class _AboutBookScreenState extends State<AboutBookScreen> {
                       valueListenable: favoriteNotifier,
                       builder: (context, bookList, child) => IconButton(
                           onPressed: () {
-                            addAndremoveFavorite(widget.bookModel);
+                            addAndRemoveFavorite(widget.bookModel);
                           },
                           icon: bookList.contains(widget.bookModel)
                               ? const Icon(

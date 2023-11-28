@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:mylibrary/Screens/Models/bookdata_model.dart';
 
-ValueNotifier<List<BookModel>> favoriteNotifier = ValueNotifier(<BookModel>[]);
+ValueNotifier<List<BookModel>> favoriteNotifier =
+    ValueNotifier<List<BookModel>>([]);
 
 String? currentuser;
 
@@ -46,13 +47,12 @@ Future<List<BookModel>> fetchBooksByCategory({required String category}) async {
 Future<void> getFavorite() async {
   final box = await Hive.openBox<BookModel>('books_db');
   final favoriteList = box.values
-      .toList()
-      .where((books) => books.favoriteUserIds!.contains(currentuser));
-  favoriteNotifier.value = favoriteList.toList();
-  favoriteNotifier.notifyListeners();
+      .where((books) => books.favoriteUserIds!.contains(currentuser))
+      .toList();
+  favoriteNotifier.value = favoriteList;
 }
 
-Future<void> addAndremoveFavorite(BookModel bookModels) async {
+Future<void> addAndRemoveFavorite(BookModel bookModels) async {
   BookModel book = bookModels;
   if (bookModels.favoriteUserIds!.contains(currentuser)) {
     bookModels.favoriteUserIds!.remove(currentuser);

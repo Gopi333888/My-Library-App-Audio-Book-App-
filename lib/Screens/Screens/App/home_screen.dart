@@ -103,8 +103,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       'Good Evening $name',
                                       style: const TextStyle(fontSize: 20),
                                     ),
-                          accountEmail:
-                              Text(FirebaseAuth.instance.currentUser!.email!),
+                          accountEmail: Text(
+                            FirebaseAuth.instance.currentUser!.email!,
+                          ),
                         ),
                       );
                     }
@@ -115,52 +116,72 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 ListTile(
                   leading: InkWell(
-                    //inkwell or guestordirector can be used
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: const Text("LogOut"),
-                            content: const Text("Log Out of your account"),
-                            actions: [
-                              Padding(
-                                padding: const EdgeInsets.all(18.0),
-                                child: ElevatedButton(
+                      //inkwell or guestordirector can be used
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text("LogOut"),
+                              content: const Text("Log Out of your account"),
+                              actions: [
+                                Padding(
+                                  padding: const EdgeInsets.all(18.0),
+                                  child: ElevatedButton(
+                                      style: const ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStatePropertyAll(
+                                                  Colors.green)),
+                                      onPressed: () {
+                                        authservice.signOut();
+                                        Navigator.of(context)
+                                            .pushAndRemoveUntil(
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const UserLogin(),
+                                                ),
+                                                (route) => false);
+                                      },
+                                      child: const Text("Log out")),
+                                ),
+                                ElevatedButton(
                                     style: const ButtonStyle(
                                         backgroundColor:
                                             MaterialStatePropertyAll(
                                                 Colors.green)),
                                     onPressed: () {
-                                      authservice.signOut();
-                                      Navigator.of(context).pushAndRemoveUntil(
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const UserLogin(),
-                                          ),
-                                          (route) => false);
+                                      Navigator.of(context).pop();
                                     },
-                                    child: const Text("Log out")),
-                              ),
-                              ElevatedButton(
-                                  style: const ButtonStyle(
-                                      backgroundColor: MaterialStatePropertyAll(
-                                          Colors.green)),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: const Text("Cancel"))
-                            ],
-                          );
-                        },
-                      );
-                    },
-                    child: const Text(
-                      "LogOut",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ),
+                                    child: const Text("Cancel"))
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      child: Center(
+                        child: Container(
+                          width: 100,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            gradient: const LinearGradient(
+                              colors: [Colors.green, Colors.white],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                            boxShadow: const [BoxShadow(color: Colors.black)],
+                          ),
+                          child: const Center(
+                            child: Text(
+                              "LogOut",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.black),
+                            ),
+                          ),
+                        ),
+                      )),
                 ),
               ],
             ),

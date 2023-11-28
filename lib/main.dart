@@ -6,7 +6,6 @@ import 'package:mylibrary/Screens/login.dart/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await Firebase.initializeApp();
   await Hive.initFlutter();
   if (!Hive.isAdapterRegistered(BookModelAdapter().typeId)) {
@@ -22,7 +21,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: SplashScreen(),
-      // home: SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
