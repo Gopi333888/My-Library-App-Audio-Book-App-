@@ -11,6 +11,7 @@ Future<void> main() async {
   if (!Hive.isAdapterRegistered(BookModelAdapter().typeId)) {
     Hive.registerAdapter(BookModelAdapter());
   }
+
   runApp(const MyApp());
 }
 

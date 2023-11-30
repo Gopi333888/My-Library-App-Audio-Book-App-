@@ -14,19 +14,7 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-String? username;
-
 class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    setcurrentuser();
-    super.initState();
-  }
-
-  Future<void> setcurrentuser() async {
-    currentuser = await SharedPreferenceClass.getcurrentuserID() ?? '';
-  }
-
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(

@@ -116,7 +116,6 @@ class _DataStoredScreenState extends State<DataStoredScreen> {
                                                                 Colors.green)),
                                                     onPressed: () {
                                                       bookDatas.removeAt(index);
-                                                      setState(() {});
                                                       deleteBooksAFromHive(
                                                           index);
                                                       Navigator.of(context)

@@ -98,8 +98,8 @@ class _SearchState extends State<Search> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => AboutBookScreen(
-                                      bookModel: bookDatas[index],
-                                     )),
+                                        bookModel: bookDatas[index],
+                                      )),
                             );
                           },
                           child: Stack(

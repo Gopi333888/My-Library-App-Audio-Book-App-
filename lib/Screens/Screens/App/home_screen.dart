@@ -158,27 +158,25 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                         );
                       },
-                      child: Center(
-                        child: Container(
-                          width: 100,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7),
-                            gradient: const LinearGradient(
-                              colors: [Colors.green, Colors.white],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                            boxShadow: const [BoxShadow(color: Colors.black)],
+                      child: Container(
+                        width: 100,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(7),
+                          gradient: const LinearGradient(
+                            colors: [Colors.green, Colors.white],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
                           ),
-                          child: const Center(
-                            child: Text(
-                              "LogOut",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Colors.black),
-                            ),
+                          boxShadow: const [BoxShadow(color: Colors.black)],
+                        ),
+                        child: const Center(
+                          child: Text(
+                            "LogOut",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: Colors.black),
                           ),
                         ),
                       )),

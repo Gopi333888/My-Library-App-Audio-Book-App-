@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:mylibrary/Screens/Screens/App/Search.dart';
 import 'package:mylibrary/Screens/Screens/App/category.dart';
 import 'package:mylibrary/Screens/Screens/App/favorite.dart';
 import 'package:mylibrary/Screens/Screens/App/home_screen.dart';
+import 'package:mylibrary/database/service/hivedatabase.dart';
 
 class NavigatorScreen extends StatefulWidget {
   const NavigatorScreen({super.key});
@@ -13,6 +16,18 @@ class NavigatorScreen extends StatefulWidget {
 }
 
 class _NavigatorBarState extends State<NavigatorScreen> {
+  @override
+  void initState() {
+    setcurrentuser();
+    super.initState();
+  }
+
+  Future<void> setcurrentuser() async {
+    currentuser = FirebaseAuth.instance.currentUser!.uid;
+    getFavorite();
+    print('user-- $currentuser');
+  }
+
   final navigationKey = GlobalKey<CurvedNavigationBarState>();
   int index = 0;
 

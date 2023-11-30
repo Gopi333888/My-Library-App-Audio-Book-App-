@@ -227,7 +227,6 @@ class _UserLoginState extends State<UserLogin> {
 
   void login() async {
     if (formkey.currentState!.validate()) {
-      setState(() {});
       await authservice.loginUserAccount(email, password).then((value) async {
         if (value == UserCredentialConstant.user) {
           QuerySnapshot snapshot =
@@ -238,9 +237,9 @@ class _UserLoginState extends State<UserLogin> {
               snapshot.docs[0]['fullName']);
           await SharedPreferenceClass.savepassword(password);
           await SharedPreferenceClass.savephonenumber(email);
-          await SharedPreferenceClass.savecurrentuserID(
-              FirebaseAuth.instance.currentUser!.uid);
           currentuser = FirebaseAuth.instance.currentUser!.uid;
+          print('user id -- ${currentuser}');
+          getFavorite();
           // ignore: use_build_context_synchronously
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(

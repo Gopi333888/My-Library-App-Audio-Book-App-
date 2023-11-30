@@ -59,6 +59,8 @@ Future<void> addAndRemoveFavorite(BookModel bookModels) async {
   } else {
     bookModels.favoriteUserIds!.add(currentuser!);
   }
+  print(
+      'fav user id in ${bookModels.bookName} is ${bookModels.favoriteUserIds}');
   await updateBookInHive(bookModels, book);
   await getFavorite();
 }
