@@ -76,21 +76,29 @@ class _ScreenBookDetailsState extends State<ScreenBookDetails> {
           children: [
             dividers,
             Center(
-              child: InkWell(
-                onTap: () async {
-                  File? pickedImage = await selectImageFromGallery(context);
-                  setState(() {
-                    coverImage = pickedImage;
-                  });
-                },
-                child: Container(
-                  width: 150,
-                  height: 200,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.cover, image: FileImage(coverImage!)),
-                      borderRadius: BorderRadius.circular(25)),
-                ),
+              child: Column(
+                children: [
+                  InkWell(
+                    onTap: () async {
+                      File? pickedImage = await selectImageFromGallery(context);
+                      setState(() {
+                        coverImage = pickedImage;
+                      });
+                    },
+                    child: Container(
+                      width: 150,
+                      height: 200,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              fit: BoxFit.cover, image: FileImage(coverImage!)),
+                          borderRadius: BorderRadius.circular(25)),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 7,
+                  ),
+                  const Text("Book Cover")
+                ],
               ),
             ),
             dividers,
@@ -142,9 +150,14 @@ class _ScreenBookDetailsState extends State<ScreenBookDetails> {
                     padding: const EdgeInsets.only(left: 20),
                     child: Row(
                       children: [
-                        CircleAvatar(
-                          backgroundImage: FileImage(selectImage!),
-                          radius: 70,
+                        Column(
+                          children: [
+                            CircleAvatar(
+                              backgroundImage: FileImage(selectImage!),
+                              radius: 70,
+                            ),
+                            const Text("Author")
+                          ],
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 90),

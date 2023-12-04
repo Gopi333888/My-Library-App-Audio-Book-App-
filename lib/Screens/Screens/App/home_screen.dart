@@ -79,34 +79,51 @@ class _HomeScreenState extends State<HomeScreen> {
                         name = data['fullName'] as String;
                       }
 
-                      return Container(
-                        width: 300,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.green,
-                        ),
-                        child: UserAccountsDrawerHeader(
-                          decoration: const BoxDecoration(),
-                          accountName: DateTime.now().hour < 12
-                              ? Text(
-                                  'Good Morning $name',
-                                  style: const TextStyle(fontSize: 20),
-                                )
-                              : DateTime.now().hour >= 12 &&
-                                      DateTime.now().hour < 16
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 300,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.green,
+                            ),
+                            child: UserAccountsDrawerHeader(
+                              decoration: const BoxDecoration(),
+                              accountName: DateTime.now().hour < 12
                                   ? Text(
-                                      'Good Afternoon $name',
+                                      'Good Morning $name',
                                       style: const TextStyle(fontSize: 20),
                                     )
-                                  : Text(
-                                      'Good Evening $name',
-                                      style: const TextStyle(fontSize: 20),
-                                    ),
-                          accountEmail: Text(
-                            FirebaseAuth.instance.currentUser!.email!,
+                                  : DateTime.now().hour >= 12 &&
+                                          DateTime.now().hour < 16
+                                      ? Text(
+                                          'Good Afternoon $name',
+                                          style: const TextStyle(fontSize: 20),
+                                        )
+                                      : Text(
+                                          'Good Evening $name',
+                                          style: const TextStyle(fontSize: 20),
+                                        ),
+                              accountEmail: Text(
+                                FirebaseAuth.instance.currentUser!.email!,
+                              ),
+                            ),
                           ),
-                        ),
+                          TextButton(
+                              onPressed: () {},
+                              child: const Text(
+                                "Privacy & Terms",
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.black),
+                              )),
+                          TextButton(
+                              onPressed: () {},
+                              child: const Text("About as",
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.black))),
+                        ],
                       );
                     }
 
@@ -158,27 +175,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                         );
                       },
-                      child: Container(
-                        width: 100,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7),
-                          gradient: const LinearGradient(
-                            colors: [Colors.green, Colors.white],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
-                          boxShadow: const [BoxShadow(color: Colors.black)],
-                        ),
-                        child: const Center(
-                          child: Text(
-                            "LogOut",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                color: Colors.black),
-                          ),
-                        ),
+                      child: const Text(
+                        "LogOut",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.black),
                       )),
                 ),
               ],
