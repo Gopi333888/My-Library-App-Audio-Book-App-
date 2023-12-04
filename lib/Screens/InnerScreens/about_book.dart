@@ -16,17 +16,7 @@ class AboutBookScreen extends StatefulWidget {
   State<AboutBookScreen> createState() => _AboutBookScreenState();
 }
 
-File? coverImage;
-File? authorImage;
-
 class _AboutBookScreenState extends State<AboutBookScreen> {
-  @override
-  void initState() {
-    super.initState();
-    coverImage = File(widget.bookModel.imageUrl);
-    authorImage = File(widget.bookModel.authorimageUrl);
-  }
-
   @override
   Widget build(BuildContext context) {
     final screenwidth = MediaQuery.of(context).size.width;
@@ -35,6 +25,7 @@ class _AboutBookScreenState extends State<AboutBookScreen> {
       backgroundColor: Colors.black,
       body: SafeArea(
         child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
               Text(
@@ -58,7 +49,8 @@ class _AboutBookScreenState extends State<AboutBookScreen> {
                           decoration: BoxDecoration(
                               image: DecorationImage(
                                   fit: BoxFit.cover,
-                                  image: FileImage(coverImage!)),
+                                  image:
+                                      NetworkImage(widget.bookModel.imageUrl)),
                               borderRadius: BorderRadius.circular(25)),
                         ),
                         Padding(
@@ -194,7 +186,8 @@ class _AboutBookScreenState extends State<AboutBookScreen> {
                       children: [
                         CircleAvatar(
                           backgroundColor: Colors.black,
-                          backgroundImage: FileImage(authorImage!),
+                          backgroundImage:
+                              NetworkImage(widget.bookModel.authorimageUrl),
                           radius: 60,
                         ),
                         Padding(

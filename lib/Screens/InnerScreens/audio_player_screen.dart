@@ -82,8 +82,8 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
               Center(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: Image.file(
-                    coverImage!,
+                  child: Image.network(
+                    widget.bookModel.imageUrl,
                     width: 300,
                     height: 400,
                     fit: BoxFit.cover,
@@ -138,7 +138,8 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                             await audioplayer.pause();
                           } else {
                             await audioplayer
-                                .play(DeviceFileSource(bookAudio!));
+                                .play(UrlSource(widget.bookModel.audioUrl));
+                            // .play(DeviceFileSource(bookAudio!));
                           }
                         },
                         icon: Icon(

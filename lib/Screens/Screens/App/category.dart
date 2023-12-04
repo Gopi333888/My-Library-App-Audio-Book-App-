@@ -42,6 +42,7 @@ class _CategoriesState extends State<Categories> {
         ),
       ),
       body: GridView.builder(
+        physics: const BouncingScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           mainAxisSpacing: 5,

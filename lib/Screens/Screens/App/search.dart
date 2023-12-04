@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:mylibrary/Screens/InnerScreens/about_book.dart';
 import 'package:mylibrary/Screens/Models/bookdata_model.dart';
@@ -107,8 +106,8 @@ class _SearchState extends State<Search> {
                             children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(16.0),
-                                child: Image.file(
-                                  File(bookDatas[index].imageUrl),
+                                child: Image.network(
+                                  bookDatas[index].imageUrl,
                                   fit: BoxFit.cover,
                                 ),
                               ),

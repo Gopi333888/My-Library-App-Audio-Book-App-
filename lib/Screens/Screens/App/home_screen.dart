@@ -241,10 +241,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(16.0),
-                            child: Image.file(
-                              File(
-                                (bookDatas[index].imageUrl),
-                              ),
+                            child: Image.network(
+                              bookDatas[index].imageUrl,
                               fit: BoxFit.cover,
                             ),
                           ),

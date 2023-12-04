@@ -71,6 +71,7 @@ class _ScreenBookDetailsState extends State<ScreenBookDetails> {
         title: Text(widget.bookModel.bookName),
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
