@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:mylibrary/PrivacyvsAboutUs/about_us.dart';
+import 'package:mylibrary/PrivacyvsAboutUs/privacy_policy.dart';
 import 'package:mylibrary/Screens/InnerScreens/about_book.dart';
 import 'package:mylibrary/Screens/Models/bookdata_model.dart';
 import 'package:mylibrary/Screens/login.dart/user_login.dart';
@@ -112,14 +114,22 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const PrivacyPolicy(),
+                                ));
+                              },
                               child: const Text(
                                 "Privacy & Terms",
                                 style: TextStyle(
                                     fontSize: 18, color: Colors.black),
                               )),
                           TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const AboutUs(),
+                                ));
+                              },
                               child: const Text("About as",
                                   style: TextStyle(
                                       fontSize: 16, color: Colors.black))),
@@ -209,6 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                   child: GridView.builder(
+                      physics: BouncingScrollPhysics(),
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                               childAspectRatio: 1 / 1.5,
